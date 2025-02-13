@@ -47,6 +47,8 @@ button {
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
+    --color-soft-rose: #ffe7e7;
+    --color-deep-red: #5f1006;
   }
   .dark {
     --background: 0 0% 3.9%;

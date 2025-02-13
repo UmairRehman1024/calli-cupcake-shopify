@@ -7,7 +7,7 @@ import Services from './services';
 
 export default function LandingPage() {
   return (
-    <div className="flex min-h-screen flex-col items-center" style={{ backgroundColor: '#FFE7E7' }}>
+    <div className="bg-SoftRose flex min-h-screen flex-col items-center">
       <Hero />
       <Services />
 

@@ -1,6 +1,5 @@
-import Link from 'next/link';
-
 import Image from 'next/image';
+import Link from 'next/link';
 import { Button } from '../ui/button';
 
 export default function Hero() {
@@ -12,11 +11,9 @@ export default function Hero() {
           alt="The Calligraphy Cupcake Logo"
           width={200}
           height={200}
-          className="mb-8"
-          style={{ color: '#5F1006' }}
+          className="text-DeepRed mb-8"
         />
-        {/* <Logo></Logo> */}
-        <h1 className="font-serif text-4xl tracking-tight md:text-6xl" style={{ color: '#5F1006' }}>
+        <h1 className="text-DeepRed font-serif text-4xl tracking-tight md:text-6xl">
           The Calligraphy Cupcake
         </h1>
         <p className="max-w-[600px] text-lg text-zinc-700 md:text-xl">
@@ -24,7 +21,7 @@ export default function Hero() {
           calligraphy letters.
         </p>
         <Link href="/products" passHref>
-          <Button size="lg" className="text-lg text-white" style={{ backgroundColor: '#5F1006' }}>
+          <Button size="lg" className="bg-DeepRed text-lg text-white">
             Order Now
           </Button>
         </Link>

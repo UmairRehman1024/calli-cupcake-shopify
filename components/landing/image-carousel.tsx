@@ -10,7 +10,7 @@ import {
 export default function ImageCarouselHomePage() {
   return (
     <section className="w-full bg-white/50 py-12">
-      <h2 className="mb-8 text-center font-serif text-3xl md:text-4xl" style={{ color: '#5F1006' }}>
+      <h2 className="text-DeepRed mb-8 text-center font-serif text-3xl md:text-4xl">
         Our Delightful Creations
       </h2>
       <Carousel className="w-full">
