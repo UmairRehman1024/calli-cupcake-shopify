@@ -1,14 +1,14 @@
-import Link from "next/link";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
 
-import { Cart } from "../../../components/cart";
-import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+// import { Cart } from "../../../components/cart";
+// import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export function Header() {
   return (
     <header className="w-full bg-[#FFE7E7] shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20 relative">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="relative flex h-16 items-center justify-between sm:h-20">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
               <Image
@@ -21,37 +21,28 @@ export function Header() {
               />
             </Link>
           </div>
-          <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
             <nav>
               <ul className="flex space-x-4">
                 <li>
-                  <Link
-                    href="/products"
-                    className="text-[#5F1006] hover:underline"
-                  >
+                  <Link href="/products" className="text-[#5F1006] hover:underline">
                     All Products
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/products/cupcakes"
-                    className="text-[#5F1006] hover:underline"
-                  >
+                  <Link href="/products/cupcakes" className="text-[#5F1006] hover:underline">
                     Cupcakes
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/products/calligraphy"
-                    className="text-[#5F1006] hover:underline"
-                  >
+                  <Link href="/products/calligraphy" className="text-[#5F1006] hover:underline">
                     Calligraphy
                   </Link>
                 </li>
               </ul>
             </nav>
           </div>
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <SignedIn>
               <UserButton />
             </SignedIn>
@@ -59,7 +50,7 @@ export function Header() {
               <SignInButton />
             </SignedOut>
             <Cart />
-          </div>
+          </div> */}
         </div>
       </div>
     </header>
