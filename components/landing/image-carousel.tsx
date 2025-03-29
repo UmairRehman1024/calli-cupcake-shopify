@@ -10,7 +10,7 @@ import {
 export default function ImageCarouselHomePage() {
   return (
     <section className="w-full bg-white/50 py-12">
-      <h2 className="text-DeepRed mb-8 text-center font-serif text-3xl md:text-4xl">
+      <h2 className="mb-8 text-center font-serif text-3xl text-DeepRed md:text-4xl">
         Our Delightful Creations
       </h2>
       <Carousel className="w-full">
@@ -19,7 +19,7 @@ export default function ImageCarouselHomePage() {
             <CarouselItem key={index}>
               <div className="relative aspect-[21/9] w-full">
                 <Image
-                  src={`/placeholder.svg?height=1080&width=1920&text=Cupcake+${index + 1}`}
+                  src={`/lots-of-cupcakes.webp?height=1080&width=1920&text=Cupcake+${index + 1}`}
                   alt={`Cupcake ${index + 1}`}
                   fill
                   className="object-cover"

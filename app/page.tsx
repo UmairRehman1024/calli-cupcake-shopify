@@ -2,8 +2,6 @@ import LandingPage from '@/components/landing/landing-page';
 import Footer from '@/components/layout/footer';
 
 export const metadata = {
-  description:
-    'Indulge in delicious gluten-free & dairy-free cupcakes and beautiful, handwritten calligraphy. The Calligraphy Cupcake: Sweet treats and personalized art!',
   openGraph: {
     type: 'website'
   }

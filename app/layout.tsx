@@ -21,6 +21,9 @@ export const metadata = {
     default: SITE_NAME!,
     template: `%s | ${SITE_NAME}`
   },
+  description:
+    'Indulge in delicious gluten-free & dairy-free cupcakes and beautiful, handwritten calligraphy. The Calligraphy Cupcake: Sweet treats and personalized art!',
+
   robots: {
     follow: true,
     index: true
