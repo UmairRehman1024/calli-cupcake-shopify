@@ -349,6 +349,8 @@ export async function getMenu(handle: string): Promise<Menu[]> {
     }
   });
 
+  console.log('getMenu-response', res.body);
+
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
