@@ -341,24 +341,18 @@ export async function getCollections(): Promise<Collection[]> {
 }
 
 export async function getMenu(handle: string): Promise<Menu[]> {
-  console.log(`Getting menu with handle: ${handle}`);
   const res = await shopifyFetch<ShopifyMenuOperation>({
     query: getMenuQuery,
-    tags: [TAGS.collections],
+    // tags: [TAGS.collections],
     variables: {
       handle
     }
   });
 
-  console.log('getMenu-response for ', handle, ' ---', res.body.data.menu);
-
   return (
     res.body?.data?.menu?.items.map((item: { title: string; url: string }) => ({
       title: item.title,
       path: item.url.replace(domain, '').replace('/collections', '/search').replace('/pages', '')
-      // path: item.url.replace(domain, '').replace('/pages', '')
-
-      // path: item.url
     })) || []
   );
 }
