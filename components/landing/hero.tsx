@@ -30,8 +30,8 @@
 //   );
 // }
 
-import HeroV2 from './hero/v2';
+import HeroV6 from './hero/v6';
 
 export default function Hero() {
-  return <HeroV2 />;
+  return <HeroV6 />;
 }
