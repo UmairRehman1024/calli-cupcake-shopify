@@ -17,16 +17,16 @@ export default function HeroV6() {
                 className="w-full rounded-3xl"
                 priority
               />
-              {/* <div className="absolute right-4 top-1/4 rotate-12 transform">
-                <p className="text-3xl font-bold tracking-wider text-pink-500">BROWNIEGOD</p>
-              </div> */}
             </div>
           </div>
 
           <div className="z-10 mt-[-2rem] w-11/12 rounded-3xl bg-white p-8 shadow-sm">
-            <h1 className="mb-6 text-center font-serif text-4xl text-red-800">Easter is coming!</h1>
+            <h1 className="mb-6 text-center font-serif text-4xl text-red-800">
+              Delicious Gluten & Dairy-Free Cupcakes
+            </h1>
             <p className="mb-8 text-center text-lg text-red-700">
-              Set your alarms, our Easter collection will be launching this Thursday at 4pm! ⏰
+              Indulge in our heavenly treats without the worry. Perfect for everyone, made with
+              love.
             </p>
             <div className="flex justify-center">
               <Link
@@ -45,10 +45,11 @@ export default function HeroV6() {
             <div className="relative z-10 w-[45%]">
               <div className="mr-[-5%] flex h-[85%] flex-col justify-center rounded-3xl bg-white p-8 shadow-sm">
                 <h1 className="mb-4 text-center font-serif text-4xl text-red-800 lg:text-5xl">
-                  Easter is coming!
+                  Delicious Gluten & Dairy-Free Cupcakes
                 </h1>
                 <p className="mb-6 text-center text-lg text-red-700 lg:text-xl">
-                  Set your alarms, our Easter collection will be launching this Thursday at 4pm! ⏰
+                  Indulge in our heavenly treats without the worry. Perfect for everyone, made with
+                  love.
                 </p>
                 <div className="flex justify-center">
                   <Link
@@ -71,9 +72,6 @@ export default function HeroV6() {
                   className="w-full rounded-3xl"
                   priority
                 />
-                {/* <div className="absolute right-8 top-1/4 rotate-12 transform">
-                  <p className="text-4xl font-bold tracking-wider text-pink-500">BROWNIEGOD</p>
-                </div> */}
               </div>
             </div>
           </div>
