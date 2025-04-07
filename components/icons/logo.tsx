@@ -1,12 +1,13 @@
 import clsx from 'clsx';
-
+/* requires width and height to be set using className
+ */
 export default function LogoIcon(props: React.ComponentProps<'svg'>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 1132 1068"
       {...props}
-      className={clsx('h-4 w-4 fill-DeepRed', props.className)}
+      className={clsx('fill-DeepRed', props.className)}
     >
       <g transform="translate(0,1068) scale(0.1,-0.1)" stroke="none">
         <path
