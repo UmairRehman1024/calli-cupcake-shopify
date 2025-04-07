@@ -33,7 +33,7 @@ export default function HeroV6() {
                 href="/collection"
                 className="rounded-full bg-red-800 px-8 py-3 font-medium text-white transition-colors hover:bg-red-900"
               >
-                Browse the collection
+                Browse our collection
               </Link>
             </div>
           </div>
@@ -56,7 +56,7 @@ export default function HeroV6() {
                     href="/collection"
                     className="rounded-full bg-red-800 px-6 py-2.5 font-medium text-white transition-colors hover:bg-red-900 lg:px-8 lg:py-3"
                   >
-                    Browse the collection
+                    Browse our collection
                   </Link>
                 </div>
               </div>
