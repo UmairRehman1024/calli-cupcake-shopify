@@ -54,6 +54,7 @@ const config: Config = {
         // --color-deep-red: #5f1006;
         SoftRose: 'var(--color-soft-rose)',
         DeepRed: 'var(--color-deep-red)',
+        textPrimary: '#9C2B2B',
 
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
