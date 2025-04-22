@@ -10,8 +10,8 @@ export async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
   console.log('menu- ', menu);
   return (
-    <nav className="relative flex items-center bg-SoftRose p-4 lg:px-6">
-      <div className="relative flex w-full items-center justify-between">
+    <nav className="relative flex items-center justify-center bg-SoftRose p-4 lg:px-6">
+      <div className="relative flex w-full max-w-7xl items-center justify-between">
         {/* Left section - Mobile menu on small screens, Logo on medium+ screens */}
         <div className="flex items-center md:w-1/3">
           {/* Mobile Menu - Only visible on small screens */}
