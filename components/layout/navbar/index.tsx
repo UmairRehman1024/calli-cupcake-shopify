@@ -5,35 +5,45 @@ import { Menu } from 'lib/shopify/types';
 import Link from 'next/link';
 import { Suspense } from 'react';
 import MobileMenu from './mobile-menu';
-
 const { SITE_NAME } = process.env;
-
 export async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
-
   console.log('menu- ', menu);
-
   return (
-    <nav className="relative flex items-center justify-between bg-SoftRose p-4 lg:px-6">
-      <div className="block flex-none md:hidden">
-        <Suspense fallback={null}>
-          <MobileMenu menu={menu} />
-        </Suspense>
-      </div>
-      <div className="flex w-full items-center">
-        <div className="flex w-full md:w-2/3">
-          <Link
-            href="/"
-            prefetch={true}
-            className="mr-2 flex w-full items-center justify-center md:w-auto lg:mr-6"
-          >
-            <LogoIcon className="h-16 w-16" />
-            <div className="ml-2 flex-none font-serif text-sm font-medium text-DeepRed md:hidden lg:block">
-              {SITE_NAME}
-            </div>
-          </Link>
+    <nav className="relative flex items-center bg-SoftRose p-4 lg:px-6">
+      <div className="relative flex w-full items-center justify-between">
+        {/* Left section - Mobile menu on small screens, Logo on medium+ screens */}
+        <div className="flex items-center md:w-1/3">
+          {/* Mobile Menu - Only visible on small screens */}
+          <div className="md:hidden">
+            <Suspense fallback={null}>
+              <MobileMenu menu={menu} />
+            </Suspense>
+          </div>
+
+          {/* Logo - Left on medium+ screens */}
+          <div className="hidden md:block">
+            <Link href="/" prefetch={true} className="flex items-center justify-center">
+              <LogoIcon className="h-16 w-16" />
+              {/* <div className="ml-2 flex-none font-serif text-sm font-medium text-DeepRed md:hidden lg:block">
+                {SITE_NAME}
+              </div> */}
+            </Link>
+          </div>
+        </div>
+
+        {/* Center section - Logo on small screens, Menu on medium+ screens */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform md:static md:left-auto md:top-auto md:flex md:w-1/3 md:translate-x-0 md:translate-y-0 md:transform-none md:justify-center">
+          {/* Logo - Centered on small screens only */}
+          <div className="md:hidden">
+            <Link href="/" prefetch={true} className="flex items-center justify-center">
+              <LogoIcon className="h-16 w-16" />
+            </Link>
+          </div>
+
+          {/* Menu - Centered on medium+ screens */}
           {menu.length ? (
-            <ul className="hidden gap-6 text-sm md:flex md:items-center">
+            <ul className="hidden items-center gap-6 text-sm md:flex">
               {menu.map((item: Menu) => (
                 <li key={item.title}>
                   <Link
@@ -48,11 +58,8 @@ export async function Navbar() {
             </ul>
           ) : null}
         </div>
-        {/* <div className="hidden justify-center md:flex md:w-1/3">
-          <Suspense fallback={<SearchSkeleton />}>
-            <Search />
-          </Suspense>
-        </div> */}
+
+        {/* Right section - Cart always on right */}
         <div className="flex justify-end md:w-1/3">
           <CartModal />
         </div>
