@@ -46,6 +46,11 @@ const cartFragment = /* GraphQL */ `
       }
     }
     totalQuantity
+    attributes {
+      # Add this section
+      key
+      value
+    }
   }
   ${productFragment}
 `;

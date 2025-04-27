@@ -105,6 +105,26 @@ export type ShopifyCart = {
   };
   lines: Connection<CartItem>;
   totalQuantity: number;
+  attributes: Array<{
+    // Add this property
+    key: string;
+    value: string;
+  }>;
+};
+
+export type ShopifyUpdateCartAttributesOperation = {
+  data: {
+    cartAttributesUpdate: {
+      cart: ShopifyCart;
+    };
+  };
+  variables: {
+    cartId: string;
+    attributes: {
+      key: string;
+      value: string;
+    }[];
+  };
 };
 
 export type ShopifyCollection = {

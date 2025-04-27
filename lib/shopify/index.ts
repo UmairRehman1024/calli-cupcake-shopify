@@ -8,7 +8,8 @@ import {
   addToCartMutation,
   createCartMutation,
   editCartItemsMutation,
-  removeFromCartMutation
+  removeFromCartMutation,
+  updateCartAttributesMutation
 } from './mutations/cart';
 import { getCartQuery } from './queries/cart';
 import {
@@ -47,6 +48,7 @@ import {
   ShopifyProductRecommendationsOperation,
   ShopifyProductsOperation,
   ShopifyRemoveFromCartOperation,
+  ShopifyUpdateCartAttributesOperation,
   ShopifyUpdateCartOperation
 } from './types';
 
@@ -452,4 +454,20 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   }
 
   return NextResponse.json({ status: 200, revalidated: true, now: Date.now() });
+}
+
+export async function updateCartAttributes(
+  cartId: string,
+  attributes: { key: string; value: string }[]
+): Promise<Cart> {
+  const res = await shopifyFetch<ShopifyUpdateCartAttributesOperation>({
+    query: updateCartAttributesMutation,
+    variables: {
+      cartId,
+      attributes
+    },
+    cache: 'no-store'
+  });
+
+  return reshapeCart(res.body.data.cartAttributesUpdate.cart);
 }
