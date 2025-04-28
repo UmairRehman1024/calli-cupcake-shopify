@@ -95,6 +95,7 @@ function createEmptyCart(): Cart {
     checkoutUrl: '',
     totalQuantity: 0,
     lines: [],
+    attributes: [],
     cost: {
       subtotalAmount: { amount: '0', currencyCode: 'USD' },
       totalAmount: { amount: '0', currencyCode: 'USD' },
