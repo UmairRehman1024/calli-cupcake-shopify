@@ -176,7 +176,7 @@ export default function CartModal() {
                       })}
                   </ul>
                   <div className="py-4 text-sm text-neutral-500 dark:text-neutral-400">
-                    {cart && <PickupDateSelector cartId={cart.id} />}
+                    <PickupDateSelector cartId={cart.id} />
                     {/* <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 dark:border-neutral-700">
                       <p>Taxes</p>
                       <Price
