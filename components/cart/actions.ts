@@ -1,7 +1,14 @@
 'use server';
 
 import { TAGS } from 'lib/constants';
-import { addToCart, createCart, getCart, removeFromCart, updateCart } from 'lib/shopify';
+import {
+  addToCart,
+  createCart,
+  getCart,
+  removeFromCart,
+  updateCart,
+  updateCartAttributes
+} from 'lib/shopify';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
@@ -107,8 +114,6 @@ export async function createCartAndSetCookie() {
   let cart = await createCart();
   (await cookies()).set('cartId', cart.id!);
 }
-
-import { updateCartAttributes } from 'lib/shopify';
 
 export async function updateCartAttributesAction(
   cartId: string,

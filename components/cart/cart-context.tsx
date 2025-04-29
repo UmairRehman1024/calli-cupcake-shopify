@@ -199,13 +199,7 @@ export function CartProvider({
     });
 
     // 3. Send the full array to Shopify
-    const result = await updateCartAttributesAction(optimisticCart.id, newAttributes);
-
-    if (result?.cart) {
-      startTransition(() => {
-        updateOptimisticCart({ type: 'REPLACE_CART', payload: result.cart });
-      });
-    }
+    await updateCartAttributesAction(optimisticCart.id, newAttributes);
   };
 
   const setPickupTime = async (time: string) => {
@@ -224,13 +218,7 @@ export function CartProvider({
     });
 
     // 3. Send the full array to Shopify
-    const result = await updateCartAttributesAction(optimisticCart.id, newAttributes);
-
-    if (result?.cart) {
-      startTransition(() => {
-        updateOptimisticCart({ type: 'REPLACE_CART', payload: result.cart });
-      });
-    }
+    await updateCartAttributesAction(optimisticCart.id, newAttributes);
   };
 
   const updateCartItem = (merchandiseId: string, updateType: UpdateType) => {
