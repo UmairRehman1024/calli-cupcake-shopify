@@ -29,7 +29,7 @@ export default function HeroV7() {
             </p>
             <div className="flex justify-center">
               <Link
-                href="/collection"
+                href="/search/cupcakes"
                 className="rounded-full bg-red-800 px-6 py-2 font-medium text-white transition-colors hover:bg-red-900"
               >
                 Browse our collection
@@ -63,7 +63,7 @@ export default function HeroV7() {
               </p>
               <div className="flex justify-center">
                 <Link
-                  href="/collection"
+                  href="/search/cupcakes"
                   className="rounded-full bg-red-800 px-6 py-2 font-medium text-white transition-colors hover:bg-red-900 lg:px-8 lg:py-3"
                 >
                   Browse our collection
