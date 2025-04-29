@@ -2,6 +2,7 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
 import LoadingDots from 'components/loading-dots';
 import Price from 'components/price';
 import { DEFAULT_OPTION } from 'lib/constants';
@@ -216,14 +217,33 @@ export default function CartModal() {
 
 function CheckoutButton() {
   const { pending } = useFormStatus();
+  const { pickupDate, pickupTime } = useCart();
+
+  const isDisabled = pending || !pickupDate || !pickupTime;
 
   return (
-    <button
-      className="block w-full rounded-full bg-textPrimary p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-      type="submit"
-      disabled={pending}
-    >
-      {pending ? <LoadingDots className="bg-white" /> : 'Proceed to Checkout'}
-    </button>
+    <div>
+      <button
+        className={clsx(
+          'block w-full rounded-full p-3 text-center text-sm font-medium',
+          isDisabled
+            ? 'cursor-not-allowed bg-gray-300 text-gray-500 opacity-60'
+            : 'bg-textPrimary text-white opacity-90 hover:opacity-100'
+        )}
+        type="submit"
+        disabled={isDisabled}
+      >
+        {pending ? <LoadingDots className="bg-white" /> : 'Proceed to Checkout'}
+      </button>
+      {isDisabled && !pending && (
+        <p className="mt-2 text-center text-sm text-red-600">
+          {!pickupDate && !pickupTime
+            ? 'Please select a pickup date and time.'
+            : !pickupDate
+              ? 'Please select a pickup date.'
+              : 'Please select a pickup time.'}
+        </p>
+      )}
+    </div>
   );
 }
