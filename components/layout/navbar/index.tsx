@@ -8,7 +8,6 @@ import MobileMenu from './mobile-menu';
 const { SITE_NAME } = process.env;
 export async function Navbar() {
   const menu = await getMenu('next-js-frontend-header-menu');
-  console.log('menu- ', menu);
   return (
     <nav className="relative flex items-center justify-center bg-SoftRose p-4 lg:px-6">
       <div className="relative flex w-full max-w-7xl items-center justify-between">

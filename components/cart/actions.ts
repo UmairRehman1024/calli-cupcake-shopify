@@ -122,7 +122,6 @@ export async function updateCartAttributesAction(
   try {
     const cart = await updateCartAttributes(cartId, attributes);
     revalidateTag(TAGS.cart);
-    console.log('Shopify cart after update:', cart);
     return { success: true, cart };
   } catch (error) {
     throw new Error('Failed to update cart');
