@@ -1,18 +1,32 @@
 'use client';
 
 import type { Cart, CartItem, Product, ProductVariant } from 'lib/shopify/types';
-import React, { createContext, use, useContext, useMemo, useOptimistic } from 'react';
+import React, {
+  createContext,
+  startTransition,
+  use,
+  useContext,
+  useMemo,
+  useOptimistic
+} from 'react';
+import { updateCartAttributesAction } from './actions'; // <-- Import your server action
 
 type UpdateType = 'plus' | 'minus' | 'delete';
 
 type CartAction =
   | { type: 'UPDATE_ITEM'; payload: { merchandiseId: string; updateType: UpdateType } }
-  | { type: 'ADD_ITEM'; payload: { variant: ProductVariant; product: Product } };
+  | { type: 'ADD_ITEM'; payload: { variant: ProductVariant; product: Product } }
+  | { type: 'UPDATE_ATTRIBUTES'; payload: { key: string; value: string } }
+  | { type: 'REPLACE_CART'; payload: Cart };
 
 type CartContextType = {
   cart: Cart | undefined;
   updateCartItem: (merchandiseId: string, updateType: UpdateType) => void;
   addCartItem: (variant: ProductVariant, product: Product) => void;
+  pickupDate?: string;
+  pickupTime?: string;
+  setPickupDate: (date: string) => Promise<void>;
+  setPickupTime: (time: string) => Promise<void>;
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -141,6 +155,16 @@ function cartReducer(state: Cart | undefined, action: CartAction): Cart {
 
       return { ...currentCart, ...updateCartTotals(updatedLines), lines: updatedLines };
     }
+    case 'UPDATE_ATTRIBUTES': {
+      const { key, value } = action.payload;
+      const filtered = currentCart.attributes.filter((attr) => attr.key !== key);
+      return {
+        ...currentCart,
+        attributes: [...filtered, { key, value }]
+      };
+    }
+    case 'REPLACE_CART':
+      return action.payload;
     default:
       return currentCart;
   }
@@ -156,6 +180,59 @@ export function CartProvider({
   const initialCart = use(cartPromise);
   const [optimisticCart, updateOptimisticCart] = useOptimistic(initialCart, cartReducer);
 
+  // Get pickup date/time from cart attributes
+  const pickupDate = optimisticCart?.attributes.find((attr) => attr.key === 'Pickup_Date')?.value;
+  const pickupTime = optimisticCart?.attributes.find((attr) => attr.key === 'Pickup_Time')?.value;
+  const setPickupDate = async (date: string) => {
+    if (!optimisticCart?.id) return;
+
+    // 1. Get current attributes, filter out Pickup_Date, and add the new one
+    const otherAttributes = optimisticCart.attributes.filter((attr) => attr.key !== 'Pickup_Date');
+    const newAttributes = [...otherAttributes, { key: 'Pickup_Date', value: date }];
+
+    // 2. Optimistic update
+    startTransition(() => {
+      updateOptimisticCart({
+        type: 'UPDATE_ATTRIBUTES',
+        payload: { key: 'Pickup_Date', value: date }
+      });
+    });
+
+    // 3. Send the full array to Shopify
+    const result = await updateCartAttributesAction(optimisticCart.id, newAttributes);
+
+    if (result?.cart) {
+      startTransition(() => {
+        updateOptimisticCart({ type: 'REPLACE_CART', payload: result.cart });
+      });
+    }
+  };
+
+  const setPickupTime = async (time: string) => {
+    if (!optimisticCart?.id) return;
+
+    // 1. Get current attributes, filter out Pickup_Time, and add the new one
+    const otherAttributes = optimisticCart.attributes.filter((attr) => attr.key !== 'Pickup_Time');
+    const newAttributes = [...otherAttributes, { key: 'Pickup_Time', value: time }];
+
+    // 2. Optimistic update
+    startTransition(() => {
+      updateOptimisticCart({
+        type: 'UPDATE_ATTRIBUTES',
+        payload: { key: 'Pickup_Time', value: time }
+      });
+    });
+
+    // 3. Send the full array to Shopify
+    const result = await updateCartAttributesAction(optimisticCart.id, newAttributes);
+
+    if (result?.cart) {
+      startTransition(() => {
+        updateOptimisticCart({ type: 'REPLACE_CART', payload: result.cart });
+      });
+    }
+  };
+
   const updateCartItem = (merchandiseId: string, updateType: UpdateType) => {
     updateOptimisticCart({ type: 'UPDATE_ITEM', payload: { merchandiseId, updateType } });
   };
@@ -168,9 +245,13 @@ export function CartProvider({
     () => ({
       cart: optimisticCart,
       updateCartItem,
-      addCartItem
+      addCartItem,
+      pickupDate,
+      pickupTime,
+      setPickupDate,
+      setPickupTime
     }),
-    [optimisticCart]
+    [optimisticCart, pickupDate, pickupTime]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
