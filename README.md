@@ -1,6 +1,6 @@
 # The Calligraphy Cupcake - Gluten & Dairy-Free Cupcake E-commerce Website
 
-![Screenshot Placeholder](the-calligraphy-cupcake.PNG)
+![Screenshot of website](/public/the-calligraphy-cupcake.PNG)
 
 This repository contains the code for the [Your Store Name] e-commerce website, specializing in gluten and dairy-free cupcakes. It's built using Next.js 15 and integrates directly with the Shopify GraphQL API for product management and checkout.
 
@@ -91,4 +91,3 @@ pnpm dev
 ```
 
 Open http://localhost:3000 with your browser to see the result.
-[Toronto Cupcakes dribble design](https://dribbble.com/shots/22086624-Toronto-Cupcakes-Redesign)
