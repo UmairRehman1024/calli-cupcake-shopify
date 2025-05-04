@@ -1,34 +1,88 @@
-## Integrations
+# The Calligraphy Cupcake - Gluten & Dairy-Free Cupcake E-commerce Website
 
-Integrations enable upgraded or additional functionality for Next.js Commerce
+![Screenshot Placeholder](link-to-screenshot.png) <!-- Optional: Add a screenshot link -->
 
-- [Orama](https://github.com/oramasearch/nextjs-commerce) ([Demo](https://vercel-commerce.oramasearch.com/))
+This repository contains the code for the [Your Store Name] e-commerce website, specializing in gluten and dairy-free cupcakes. It's built using Next.js 15 and integrates directly with the Shopify GraphQL API for product management and checkout.
 
-  - Upgrades search to include typeahead with dynamic re-rendering, vector-based similarity search, and JS-based configuration.
-  - Search runs entirely in the browser for smaller catalogs or on a CDN for larger.
+The project leverages the Vercel/commerce template as a foundation, utilizing modern web technologies for a high-performance, server-rendered shopping experience.
 
-- [React Bricks](https://github.com/ReactBricks/nextjs-commerce-rb) ([Demo](https://nextjs-commerce.reactbricks.com/))
-  - Edit pages, product details, and footer content visually using [React Bricks](https://www.reactbricks.com) visual headless CMS.
+## Key Features
 
-## Running locally
+*   **Modern Tech Stack:** Built with Next.js 15 (App Router), React Server Components, Server Actions, and Suspense.
+*   **Shopify Integration:** Uses the Shopify GraphQL API for fetching products, managing cart, and handling checkout.
+*   **Custom Pickup Selector:** Features a custom-built component in the cart allowing customers to select their preferred pickup date and time.
+*   **Optimized Performance:** Leverages Next.js features for fast page loads and a smooth user experience.
+*   **SEO & Social Media Ready:** Implemented SEO best practices and Open Graph tags for better discoverability and sharing.
+*   **Custom UI Design:** Features a unique user interface designed specifically for the brand.
+*   **Responsive Design:** Adapts to various screen sizes for a seamless experience on desktop and mobile.
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Next.js Commerce. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+## Tech Stack
 
-> Note: You should not commit your `.env` file or it will expose secrets that will allow others to control your Shopify store.
+*   **Framework:** Next.js 15 (App Router)
+*   **E-commerce Backend:** Shopify (GraphQL API)
+*   **Language:** TypeScript
+*   **Styling:** Tailwind
+*   **Deployment:** Vercel (Recommended)
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
+## Getting Started
+
+Follow these instructions to get a local copy up and running for development and testing purposes.
+
+### Prerequisites
+
+*   Node.js (Version specified in `.nvmrc` or latest LTS recommended)
+*   npm, yarn, or pnpm
+*   Git
+*   Access to a Shopify Store with API credentials (Storefront API access token)
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/UmairRehman1024/calli-cupcake-shopify.git
+    cd calli-cupcake-shopify
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    yarn install
+    # or
+    pnpm install
+    ```
+
+3.  **Set up environment variables:**
+    *   Duplicate the `.env.example` file and rename it to `.env.local`.
+    *   Fill in the required Shopify API credentials and other environment variables as listed in the `.env.example` file.
+
+    ```bash
+    cp .env.example .env.local
+    ```
+
+    **`.env.local` Example:**
+    ```env
+    COMPANY_NAME="The Calligraphy Cupcake"
+    SITE_NAME="The Calligraphy Cupcake"
+    # Shopify
+    SHOPIFY_STORE_DOMAIN=your-store-name.myshopify.com
+    SHOPIFY_STOREFRONT_ACCESS_TOKEN=your-storefront-access-token
+    SHOPIFY_REVALIDATION_SECRET=your-revalidation-secret  
+    
+    ```
+### Configuration & Deployment Guide
+
+*   **Shopify Integration & Vercel Deployment:** For detailed instructions on configuring the Shopify Storefront API integration and deploying this project to Vercel, please follow this official guide:
+    *   [Vercel Shopify Integration Guide](https://vercel.com/docs/integrations/ecommerce/shopify)
+
+### Running the Development Server
 
 ```bash
-pnpm install
+npm run dev
+# or
+yarn dev
+# or
 pnpm dev
 ```
-
-Your app should now be running on [localhost:3000](http://localhost:3000/).
-
-## Vercel, Next.js Commerce, and Shopify Integration Guide
-
-You can use this comprehensive [integration guide](https://vercel.com/docs/integrations/ecommerce/shopify) with step-by-step instructions on how to configure Shopify as a headless CMS using Next.js Commerce as your headless Shopify storefront on Vercel.
-
+Open http://localhost:3000 with your browser to see the result.
 [Toronto Cupcakes dribble design](https://dribbble.com/shots/22086624-Toronto-Cupcakes-Redesign)
