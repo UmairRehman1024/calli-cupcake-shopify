@@ -2,7 +2,7 @@
 
 ![Screenshot of website](/public/the-calligraphy-cupcake.PNG)
 
-This repository contains the code for the [Your Store Name] e-commerce website, specializing in gluten and dairy-free cupcakes. It's built using Next.js 15 and integrates directly with the Shopify GraphQL API for product management and checkout.
+This repository contains the code for the The Calligraphy Cupcake e-commerce website, specializing in gluten and dairy-free cupcakes. It's built using Next.js 15 and integrates directly with the Shopify GraphQL API for product management and checkout.
 
 The project leverages the Vercel/commerce template as a foundation, utilizing modern web technologies for a high-performance, server-rendered shopping experience.
 
