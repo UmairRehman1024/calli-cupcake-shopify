@@ -1,3 +1,4 @@
+import crypto from 'crypto';
 import { HIDDEN_PRODUCT_TAG, SHOPIFY_GRAPHQL_API_ENDPOINT, TAGS } from 'lib/constants';
 import { isShopifyError } from 'lib/type-guards';
 import { ensureStartsWith } from 'lib/utils';
@@ -431,11 +432,28 @@ export async function revalidate(req: NextRequest): Promise<NextResponse> {
   const collectionWebhooks = ['collections/create', 'collections/delete', 'collections/update'];
   const productWebhooks = ['products/create', 'products/delete', 'products/update'];
   const topic = (await headers()).get('x-shopify-topic') || 'unknown';
-  const secret = req.nextUrl.searchParams.get('secret');
+  const shopifyHmac = (await headers()).get('x-shopify-hmac-sha256') || 'unknown';
+  // const secret = req.nextUrl.searchParams.get('secret');
   const isCollectionUpdate = collectionWebhooks.includes(topic);
   const isProductUpdate = productWebhooks.includes(topic);
 
-  if (!secret || secret !== process.env.SHOPIFY_REVALIDATION_SECRET) {
+  const body = await req.text();
+  const revalidationSecret = process.env.SHOPIFY_REVALIDATION_SECRET;
+  if (!revalidationSecret) {
+    console.error('SHOPIFY_REVALIDATION_SECRET is not set.');
+    return NextResponse.json({ status: 500 });
+  }
+
+  const calculatedHmacDigest = crypto
+    .createHmac('sha256', revalidationSecret)
+    .update(body)
+    .digest('base64');
+  const hmacValid = crypto.timingSafeEqual(
+    Buffer.from(calculatedHmacDigest),
+    Buffer.from(shopifyHmac)
+  );
+
+  if (!hmacValid) {
     console.error('Invalid revalidation secret.');
     return NextResponse.json({ status: 401 });
   }
